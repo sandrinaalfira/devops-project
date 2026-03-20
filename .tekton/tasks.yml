@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: lint-task
+spec:
+  steps:
+    - name: lint
+      image: python:3.10
+      script: |
+        pip install flake8
+        flake8 .
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  steps:
+    - name: test
+      image: python:3.10
+      script: |
+        pip install pytest
+        pytest
